@@ -14,7 +14,7 @@ jobs:
           distribution: zulu
         
       - name: Build with Gradle
-        uses: gradle/actions@v4.2.2
+        uses: gradle/actions/setup-gradle@v4.2.2
         
       
       
