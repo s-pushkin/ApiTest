@@ -19,8 +19,17 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew clean build   # Сборка проекта с помощью Gradle Wrapper
 
-      - name: Run tests
-        run: ./gradlew test
+      - name: Run Register User tests
+        run: ./gradlew testRegisterUser
+
+      - name: Run Update User tests
+        run: ./gradlew testUpdateUser
+
+      - name: Run Delete User tests
+        run: ./gradlew testDeleteUser
+
+      - name: Run Get User tests
+        run: ./gradlew testGetUser
         
         
       
