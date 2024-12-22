@@ -2,6 +2,7 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import org.junit.jupiter.api.Tag;
 
 @Tag("registerUser")
 public class TestRegisterUser{
