@@ -3,6 +3,7 @@ import io.restassured.response.Response;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+@Tag("registerUser")
 public class TestRegisterUser{
     public void positiveTestRegisterUser(String email, String password) {
         String requestBody = "{ \"email\": " + "\"" + email + "\"" + ", \"password\": " + "\"" + password + "\"" + "}";
