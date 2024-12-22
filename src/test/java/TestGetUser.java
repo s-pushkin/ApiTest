@@ -3,6 +3,7 @@ import io.restassured.response.Response;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+@Tag("getUser")
 public class TestGetUser {
     public void positiveTestGetUser(int id) {
         Response response = RestAssured.given()
