@@ -2,6 +2,7 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@Tag("updateUser")
 public class TestUpdateUser {
     public void positiveTestUpdateUser(String name, String job, int id) {
         String requestBody = "{ \"name\": \"" + name + "\", \"job\": \"" + job + "\" }";
