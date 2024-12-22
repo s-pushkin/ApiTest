@@ -13,11 +13,14 @@ jobs:
           java-version: 22
           distribution: zulu
         
+      - name: Set up Gradle Wrapper
+        uses: gradle/wrapper-validation-action@v1  # Используем Gradle Wrapper для проекта
+
       - name: Build with Gradle
-        uses: gradle/actions/setup-gradle@v4.2.2
+        run: ./gradlew clean build   # Сборка проекта с помощью Gradle Wrapper
 
       - name: Run tests
-        run: build.gradle
+        run: ./gradlew test
         
         
       
