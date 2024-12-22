@@ -2,6 +2,7 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@Tag("deleteUser")
 public class TestDeleteUser {
     public void positiveTestDeleteUser(int id) {
         Response response = RestAssured.given()
