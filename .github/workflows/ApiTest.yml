@@ -9,6 +9,8 @@ jobs:
 
       - name: Setup Java JDK
         uses: actions/setup-java@v4.6.0
+        with:
+          distribution: jdk
         
       - name: Build with Gradle
         uses: gradle/actions@v4.2.2
