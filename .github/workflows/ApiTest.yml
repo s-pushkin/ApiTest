@@ -21,7 +21,7 @@ jobs:
     needs: build     
     steps:
       - name: Run Register User tests
-        run: ./gradlew testRegisterUser
+        run: ./gradlew TestRegisterUser
         
   get-user-tests:
     runs-on: ubuntu-latest
@@ -29,14 +29,14 @@ jobs:
 
     steps:
       - name: Run Get User tests
-        run: ./gradlew testGetUser
+        run: ./gradlew TestGetUser
 
   update-user-tests:
     runs-on: ubuntu-latest
     needs: get-user-tests
     steps:
       - name: Run Update User tests
-        run: ./gradlew testUpdateUser
+        run: ./gradlew TestUpdateUser
 
   delete-user-tests:
     runs-on: ubuntu-latest
@@ -44,5 +44,5 @@ jobs:
 
     steps:
       - name: Run Delete User tests
-        run: ./gradlew testDeleteUser
+        run: ./gradlew TestDeleteUser
       
