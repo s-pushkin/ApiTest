@@ -20,3 +20,31 @@ test {
     useJUnitPlatform()
     finalizedBy 'allureReport'
 }
+
+task testRegisterUser(type: Test) {
+    useJUnitPlatform {
+        includeTags 'registerUser'  // Указываем тег для тестов регистрации пользователя
+    }
+}
+
+task testUpdateUser(type: Test) {
+    useJUnitPlatform {
+        includeTags 'updateUser'  // Указываем тег для тестов обновления пользователя
+    }
+}
+
+task testDeleteUser(type: Test) {
+    useJUnitPlatform {
+        includeTags 'deleteUser'  // Указываем тег для тестов удаления пользователя
+    }
+}
+
+task testGetUser(type: Test) {
+    useJUnitPlatform {
+        includeTags 'getUser'  // Указываем тег для тестов получения пользователя
+    }
+}
+
+task testAll(type: Test) {
+    dependsOn testRegisterUser, testUpdateUser, testDeleteUser, testGetUser  // Зависимости между задачами
+}
