@@ -7,9 +7,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4.2.2
 
-      - name: Install deps
-        run: npm ci
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4.6.0
         
-      - name: Build
-        run: npm run build
+      - name: Build with Gradle
+        uses: gradle/actions@v4.2.2
+        
+      
       
