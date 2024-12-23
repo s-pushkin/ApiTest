@@ -62,3 +62,4 @@ task testGetUser(type: Test) {
 
 task testAll(type: Test) {
     dependsOn testRegisterUser, testU
+}
