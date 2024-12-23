@@ -15,9 +15,9 @@ public class TestGetUser {
         assertEquals("Janet", response.jsonPath().getString("data.first_name"), "Expected first name is Janet");
     }
 
-    public void negativeTestGetUserNotFound(int id=2) {
+    public void negativeTestGetUserNotFound(int id) {
         Response response = RestAssured.given()
-                .get("https://reqres.in/api/users/" + this.id);
+                .get("https://reqres.in/api/users/" + id);
 
         assertEquals(404, response.getStatusCode(), "Expected status code 404");
         assertEquals("{}", response.getBody().asString(), "Error message is incorrect");
