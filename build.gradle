@@ -51,15 +51,3 @@ task testGetUser(type: Test) {
 task testAll(type: Test) {
     dependsOn testRegisterUser, testUpdateUser, testDeleteUser, testGetUser  // Зависимости между задачами
 }
-
-task allureReports(type: Exec) {
-    description = 'Generates Allure report'
-    
-    outputDir = file("build/allure-report")
-}
-
-// Задача для отображения отчета Allure
-task allureServes(type: Exec) {
-    description = 'Serves Allure report'
-    dependsOn allureReport
-}
