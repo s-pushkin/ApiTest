@@ -19,48 +19,22 @@ dependencies {
 
 test {
     useJUnitPlatform()
-    finalizedBy 'allureReport' // Generate Allure Report after tests
+    finalizedBy 'allureReport' 
     testLogging {
         events "passed", "skipped", "failed"
     }
-    systemProperty "allure.results.directory", "$buildDir/allure-results" // Ensure Allure results are stored here
+    systemProperty "allure.results.directory", "$buildDir/allure-results" 
     outputs.dir file("$buildDir/allure-results")
 }
 
 allure {
-    version = '2.11.0' // Allure CLI version
-    autoconfigure = true // Automatically configure Allure
+    version = '2.11.0' 
+    autoconfigure = true 
 }
 
 tasks.withType(Test).configureEach {
     useJUnitPlatform()
-    outputs.dir file("$buildDir/allure-results") // Make sure each test task outputs to allure-results
+    outputs.dir file("$buildDir/allure-results")
 }
 
-task testRegisterUser(type: Test) {
-    useJUnitPlatform {
-        includeTags 'registerUser'
-    }
-}
 
-task testUpdateUser(type: Test) {
-    useJUnitPlatform {
-        includeTags 'updateUser'
-    }
-}
-
-task testDeleteUser(type: Test) {
-    useJUnitPlatform {
-        includeTags 'deleteUser'
-    }
-}
-
-task testGetUser(type: Test) {
-    useJUnitPlatform {
-        includeTags 'getUser'
-    }
-}
-
-task testAll(type: Test) {
-    dependsOn testRegisterUser, testUpdateUser, testDeleteUser, testGetUser
-}
