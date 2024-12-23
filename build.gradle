@@ -1,6 +1,5 @@
 plugins {
     id 'java'
-    id 'io.qameta.allure' version '2.11.0'  // Подключаем плагин Allure через plugins
 }
 
 group = 'org.example'
@@ -8,36 +7,15 @@ version = '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
-    gradlePluginPortal()
 }
 
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testImplementation 'io.rest-assured:rest-assured:5.0.0'
-    testImplementation 'io.qameta.allure:allure-junit5:2.13.9'
 }
 
 
-task allureReport(type: Exec) {
-    group = 'Reporting'
-    description = 'Generates Allure report'
-    commandLine 'allure', 'serve', "$buildDir/allure-results"
-}
-
-// Важно! Задаем задачи для выполнения отчета после тестов:
-tasks.named("test") {
-    finalizedBy("allureReport")
-}
-
-// Настройка путей для Allure отчетов через task
-allure {
-    version = '2.13.9'
-    autoconfigure = true  // Включаем автоконфигурацию Allure
-}
-
-
-// Задачи для каждого набора тестов с тегами
 task testRegisterUser(type: Test) {
     useJUnitPlatform {
         includeTags 'registerUser'  // Указываем тег для тестов регистрации пользователя
