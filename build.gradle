@@ -52,7 +52,7 @@ task testAll(type: Test) {
     dependsOn testRegisterUser, testUpdateUser, testDeleteUser, testGetUser  // Зависимости между задачами
 }
 
-task allureReport(type: Exec) {
+task allureReports(type: Exec) {
     description = 'Generates Allure report'
     commandLine 'allure', 'generate', "$buildDir/allure-results", '--output', "$buildDir/allure-report"
 }
