@@ -14,9 +14,9 @@ jobs:
           distribution: zulu
         
       - name: Set up Gradle Wrapper
-        uses: gradle/wrapper-validation-action@v1  # Используем Gradle Wrapper для проекта
+        uses: gradle/wrapper-validation-action@v1
 
-  test_register_user_positive:
+  test_register_user:
     runs-on: ubuntu-latest
     needs: build     
     steps:
@@ -32,29 +32,10 @@ jobs:
       - name: Set execute permissions on gradlew
         run: chmod +x ./gradlew
           
-      - name: Run Register User Positive Test
-        run: ./gradlew test --tests ApiTest#positiveTestRegisterUser
-
-  test_register_user_negative_without_password:
-    runs-on: ubuntu-latest
-    needs: build     
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4.2.2
-
-      - name: Setup Java JDK
-        uses: actions/setup-java@v4.6.0
-        with:
-          java-version: 22
-          distribution: zulu
-          
-      - name: Set execute permissions on gradlew
-        run: chmod +x ./gradlew
+      - name: Run Register User tests
+        run: ./gradlew TestRegisterUser
         
-      - name: Run Register User Negative Without Password Test
-        run: ./gradlew test --tests ApiTest#negativeTestRegisterUserWithoutPassword
-        
-  test_get_user_positive:
+  test_get_user:
     runs-on: ubuntu-latest
     needs: build  # Зависит от успешного выполнения 'register-user-tests'
 
@@ -70,10 +51,10 @@ jobs:
       - name: Set execute permissions on gradlew
         run: chmod +x ./gradlew
           
-      - name: Run Get User Positive Test
-        run: ./gradlew test --tests ApiTest#testGetUserPositive
+      - name: Run Get User tests
+        run: ./gradlew TestGetUser
 
-  update-user-tests:
+  test_delete_user:
     runs-on: ubuntu-latest
     needs: build
     steps:
@@ -91,7 +72,7 @@ jobs:
       - name: Run Update User tests
         run: ./gradlew TestUpdateUser
 
-  delete-user-tests:
+  test_delete_user:
     runs-on: ubuntu-latest
     needs: build
 
@@ -110,4 +91,24 @@ jobs:
           
       - name: Run Delete User tests
         run: ./gradlew TestDeleteUser
+        
+  api_test:
+    runs-on: ubuntu-latest
+    needs: [test_register_user, test_get_user, test_delete_user, test_update_user]
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.2.2
+
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4.6.0
+        with:
+          java-version: 22
+          distribution: zulu
+
+      - name: Set execute permissions on gradlew
+        run: chmod +x ./gradlew
+
+      - name: Run ApiTest (main test)
+        run: ./gradlew ApiTest
       
