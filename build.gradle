@@ -52,14 +52,14 @@ task testAll(type: Test) {
     dependsOn testRegisterUser, testUpdateUser, testDeleteUser, testGetUser  // Зависимости между задачами
 }
 
-task allureReports(type: io.qameta.allure.gradle.task.AllureReport) {
+task allureReports(type: Exec) {
     description = 'Generates Allure report'
     
     outputDir = file("build/allure-report")
 }
 
 // Задача для отображения отчета Allure
-task allureServes(type: io.qameta.allure.gradle.task.AllureServe) {
+task allureServes(type: Exec) {
     description = 'Serves Allure report'
     dependsOn allureReport
 }
