@@ -21,43 +21,40 @@ test {
     useJUnitPlatform()
     finalizedBy 'allureReport'
     testLogging {
-        events "passed", "skipped", "failed" // Р›РѕРіРёСЂСѓРµРј РІСЃРµ СЃРѕР±С‹С‚РёСЏ С‚РµСЃС‚РѕРІ
+        events "passed", "skipped", "failed" // Логируем все события тестов
     }
 }
 
 allure {
-    version = '2.11.0'  // Р’РµСЂСЃРёСЏ Allure
+    version = '2.11.0'  // Версия Allure
 }
 
-// Р—Р°РґР°С‡Рё РґР»СЏ РєР°Р¶РґРѕРіРѕ РЅР°Р±РѕСЂР° С‚РµСЃС‚РѕРІ СЃ С‚РµРіР°РјРё
+// Задачи для каждого набора тестов с тегами
 task testRegisterUser(type: Test) {
     useJUnitPlatform {
-        includeTags 'registerUser'  // РЈРєР°Р·С‹РІР°РµРј С‚РµРі РґР»СЏ С‚РµСЃС‚РѕРІ СЂРµРіРёСЃС‚СЂР°С†РёРё РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
+        includeTags 'registerUser'  // Указываем тег для тестов регистрации пользователя
     }
 }
 
 task testUpdateUser(type: Test) {
     useJUnitPlatform {
-        includeTags 'updateUser'  // РЈРєР°Р·С‹РІР°РµРј С‚РµРі РґР»СЏ С‚РµСЃС‚РѕРІ РѕР±РЅРѕРІР»РµРЅРёСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
+        includeTags 'updateUser'  // Указываем тег для тестов обновления пользователя
     }
 }
 
 task testDeleteUser(type: Test) {
     useJUnitPlatform {
-        includeTags 'deleteUser'  // РЈРєР°Р·С‹РІР°РµРј С‚РµРі РґР»СЏ С‚РµСЃС‚РѕРІ СѓРґР°Р»РµРЅРёСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
+        includeTags 'deleteUser'  // Указываем тег для тестов удаления пользователя
     }
 }
 
 task testGetUser(type: Test) {
     useJUnitPlatform {
-        includeTags 'getUser'  // РЈРєР°Р·С‹РІР°РµРј С‚РµРі РґР»СЏ С‚РµСЃС‚РѕРІ РїРѕР»СѓС‡РµРЅРёСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
+        includeTags 'getUser'  // Указываем тег для тестов получения пользователя
     }
 }
 
-// РћСЃРЅРѕРІРЅР°СЏ Р·Р°РґР°С‡Р°, РєРѕС‚РѕСЂР°СЏ Р·Р°РІРёСЃРёС‚ РѕС‚ РІСЃРµС… РѕС‚РґРµР»СЊРЅС‹С… Р·Р°РґР°С‡
+// Основная задача, которая зависит от всех отдельных задач
 task testAll(type: Test) {
-    dependsOn testRegisterUser, testUpdateUser, testDeleteUser, testGetUser  // Р—Р°РІРёСЃРёРјРѕСЃС‚Рё РјРµР¶РґСѓ Р·Р°РґР°С‡Р°РјРё
+    dependsOn testRegisterUser, testUpdateUser, testDeleteUser, testGetUser  // Зависимости между задачами
 }
-
-
-
