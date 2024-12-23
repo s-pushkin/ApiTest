@@ -111,3 +111,28 @@ jobs:
 
       - name: Run ApiTest (main test)
         run: ./gradlew test --tests ApiTest
+
+  allure_report:
+    runs-on: windows-latest
+    needs: api_test
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.2.2
+
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4.6.0
+        with:
+          java-version: 22
+          distribution: zulu
+
+      - name: Set execute permissions on gradlew
+        run: chmod +x ./gradlew
+
+      - name: Generate Allure report
+        run: ./gradlew allureServe
+
+      - name: Upload Allure Report as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure-report
+          path: build/allure-report
