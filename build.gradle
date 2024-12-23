@@ -37,4 +37,30 @@ tasks.withType(Test).configureEach {
     outputs.dir file("$buildDir/allure-results")
 }
 
+task testRegisterUser(type: Test) {
+    useJUnitPlatform {
+        includeTags 'registerUser'
+    }
+}
 
+task testUpdateUser(type: Test) {
+    useJUnitPlatform {
+        includeTags 'updateUser'
+    }
+}
+
+task testDeleteUser(type: Test) {
+    useJUnitPlatform {
+        includeTags 'deleteUser'
+    }
+}
+
+task testGetUser(type: Test) {
+    useJUnitPlatform {
+        includeTags 'getUser'
+    }
+}
+
+task testAll(type: Test) {
+    dependsOn testRegisterUser, testUpdateUser, testDeleteUser, testGetUser
+}
