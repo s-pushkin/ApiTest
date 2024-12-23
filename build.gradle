@@ -20,6 +20,15 @@ dependencies {
 test {
     useJUnitPlatform()
     finalizedBy 'allureReport'
+    testLogging {
+        events "passed", "skipped", "failed" // Логируем все события тестов
+    }
+}
+
+allure {
+    version = '2.14.0'  // Версия Allure
+    reportDir = file("build/allure-report")  // Папка для отчетов
+    resultsDir = file("build/allure-results")  // Папка для результатов тестов
 }
 
 // Задачи для каждого набора тестов с тегами
@@ -52,6 +61,5 @@ task testAll(type: Test) {
     dependsOn testRegisterUser, testUpdateUser, testDeleteUser, testGetUser  // Зависимости между задачами
 }
 
-task generateAllureReport(type: Exec) { 
-    commandLine "allure", "generate build/allure-results" }
+
 
