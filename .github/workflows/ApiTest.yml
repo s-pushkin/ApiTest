@@ -17,15 +17,13 @@ jobs:
         uses: gradle/wrapper-validation-action@v1
 
       - name: Set up Docker
-        uses: docker/setup-buildx-action@v2  # Настройка Docker Buildx для кросс-платформенной сборки
+        uses: docker/setup-buildx-action@v2
 
       - name: Build Docker image
-        run: |
-          docker build -t api-test .  # Собираем Docker-образ
+        run: docker build -t api-test .
 
-      - name: Run Docker container
-        run: |
-          docker run -d --name api-test-container api-test
+      - name: Run tests in Docker
+        run: docker run --rm api-test
 
   test_register_user:
     runs-on: ubuntu-latest
