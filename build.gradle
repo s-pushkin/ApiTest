@@ -18,17 +18,24 @@ dependencies {
     testImplementation 'io.qameta.allure:allure-junit5:2.13.9'
 }
 
-test {
-    useJUnitPlatform()
-    finalizedBy 'allureReport'  // Запуск отчета Allure после тестов
+
+task allureReport(type: Exec) {
+    group = 'Reporting'
+    description = 'Generates Allure report'
+    commandLine 'allure', 'serve', "$buildDir/allure-results"
 }
 
+// Важно! Задаем задачи для выполнения отчета после тестов:
+tasks.named("test") {
+    finalizedBy("allureReport")
+}
+
+// Настройка путей для Allure отчетов через task
 allure {
     version = '2.13.9'
-    resultsDir = file("$buildDir/allure-results")
-    reportDir = file("$buildDir/allure-report")
-
+    autoconfigure = true  // Включаем автоконфигурацию Allure
 }
+
 
 // Задачи для каждого набора тестов с тегами
 task testRegisterUser(type: Test) {
