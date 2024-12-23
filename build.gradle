@@ -51,3 +51,7 @@ task testGetUser(type: Test) {
 task testAll(type: Test) {
     dependsOn testRegisterUser, testUpdateUser, testDeleteUser, testGetUser  // Зависимости между задачами
 }
+
+task generateAllureReport(type: Exec) { 
+    commandLine "allure", "generate build/allure-results" }
+
