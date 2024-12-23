@@ -58,7 +58,7 @@ task allureReports(type: Exec) {
 }
 
 // Задача для отображения отчета Allure
-task allureServe(type: Exec) {
+task allureServes(type: Exec) {
     description = 'Serves Allure report'
     commandLine 'allure', 'serve', "$buildDir/allure-results"
 }
