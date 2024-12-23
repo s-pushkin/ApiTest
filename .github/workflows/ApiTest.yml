@@ -110,5 +110,4 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Run ApiTest (main test)
-        run: ./gradlew ApiTest 
-      
+        run: ./gradlew test --tests ApiTest
