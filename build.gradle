@@ -21,40 +21,40 @@ test {
     useJUnitPlatform()
     finalizedBy 'allureReport'
     testLogging {
-        events "passed", "skipped", "failed" // Логируем все события тестов
+        events "passed", "skipped", "failed" 
     }
 }
 
 allure {
-    version = '2.11.0'  // Версия Allure
+    version = '2.11.0'  
 }
 
-// Задачи для каждого набора тестов с тегами
+
 task testRegisterUser(type: Test) {
     useJUnitPlatform {
-        includeTags 'registerUser'  // Указываем тег для тестов регистрации пользователя
+        includeTags 'registerUser'  
     }
 }
 
 task testUpdateUser(type: Test) {
     useJUnitPlatform {
-        includeTags 'updateUser'  // Указываем тег для тестов обновления пользователя
+        includeTags 'updateUser'  
     }
 }
 
 task testDeleteUser(type: Test) {
     useJUnitPlatform {
-        includeTags 'deleteUser'  // Указываем тег для тестов удаления пользователя
+        includeTags 'deleteUser'  
     }
 }
 
 task testGetUser(type: Test) {
     useJUnitPlatform {
-        includeTags 'getUser'  // Указываем тег для тестов получения пользователя
+        includeTags 'getUser'  
     }
 }
 
-// Основная задача, которая зависит от всех отдельных задач
+
 task testAll(type: Test) {
-    dependsOn testRegisterUser, testUpdateUser, testDeleteUser, testGetUser  // Зависимости между задачами
+    dependsOn testRegisterUser, testUpdateUser, testDeleteUser, testGetUser  
 }
