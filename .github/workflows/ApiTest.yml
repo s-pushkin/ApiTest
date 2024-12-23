@@ -129,7 +129,7 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Generate Allure report
-        run: ./gradlew allureServe
+        run: ./gradlew allureReport
 
       - name: Upload Allure Report as artifact
         uses: actions/upload-artifact@v3
