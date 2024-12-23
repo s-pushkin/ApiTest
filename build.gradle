@@ -28,8 +28,6 @@ test {
 allure {
     version = '2.11.0' // Allure CLI version
     autoconfigure = true // Automatically configure Allure
-    resultsDir = file("$buildDir/allure-results") // Directory for Allure results
-    reportDir = file("$buildDir/reports/allure-report") // Directory for Allure report
 }
 
 
