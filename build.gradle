@@ -14,15 +14,16 @@ dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testImplementation 'io.rest-assured:rest-assured:5.0.0'
-    
 }
 
 test {
     useJUnitPlatform()
-    finalizedBy 'allureReport'
+    finalizedBy 'allureReport' // Generate Allure Report after tests
     testLogging {
-        events "passed", "skipped", "failed" 
+        events "passed", "skipped", "failed"
     }
+    systemProperty "allure.results.directory", "$buildDir/allure-results" // Ensure Allure results are stored here
+    outputs.dir file("$buildDir/allure-results")
 }
 
 allure {
@@ -30,32 +31,34 @@ allure {
     autoconfigure = true // Automatically configure Allure
 }
 
+tasks.withType(Test).configureEach {
+    useJUnitPlatform()
+    outputs.dir file("$buildDir/allure-results") // Make sure each test task outputs to allure-results
+}
 
 task testRegisterUser(type: Test) {
     useJUnitPlatform {
-        includeTags 'registerUser'  
+        includeTags 'registerUser'
     }
 }
 
 task testUpdateUser(type: Test) {
     useJUnitPlatform {
-        includeTags 'updateUser'  
+        includeTags 'updateUser'
     }
 }
 
 task testDeleteUser(type: Test) {
     useJUnitPlatform {
-        includeTags 'deleteUser'  
+        includeTags 'deleteUser'
     }
 }
 
 task testGetUser(type: Test) {
     useJUnitPlatform {
-        includeTags 'getUser'  
+        includeTags 'getUser'
     }
 }
 
-
 task testAll(type: Test) {
-    dependsOn testRegisterUser, testUpdateUser, testDeleteUser, testGetUser  
-}
+    dependsOn testRegisterUser, testU
