@@ -52,13 +52,6 @@ task testAll(type: Test) {
     dependsOn testRegisterUser, testUpdateUser, testDeleteUser, testGetUser  // Зависимости между задачами
 }
 
-allure {
-    version = '2.11.0'
-    reportDir = file("build/allure-report")
-    resultsDir = file("build/allure-results")
-}
-
-
 task allureReports(type: io.qameta.allure.gradle.task.AllureReport) {
     description = 'Generates Allure report'
     
