@@ -1,6 +1,5 @@
 plugins {
     id 'java'
-    id 'org.junit.platform.gradle.plugin' version '1.8.0'
 }
 
 group = 'org.example'
@@ -16,7 +15,11 @@ dependencies {
     testImplementation 'io.rest-assured:rest-assured:5.0.0'
 }
 
+test {
+    useJUnitPlatform()
+}
 
+// Задачи для каждого набора тестов с тегами
 task testRegisterUser(type: Test) {
     useJUnitPlatform {
         includeTags 'registerUser'  // Указываем тег для тестов регистрации пользователя
