@@ -10,8 +10,8 @@ RUN apt-get update && apt-get install -y wget unzip && rm -rf /var/lib/apt/lists
 # Скачиваем Allure
 RUN wget --no-verbose -O /tmp/allure-2.13.8.zip \
     https://github.com/allure-framework/allure2/releases/download/2.13.8/allure-2.13.8.zip && \
-apt install unzip -y && \
-unzip allure-2.13.8.zip
+&& unzip /tmp/allure-2.13.8.zip -d /opt/ \
+    && rm -rf /tmp/*
 
 
 # Устанавливаем Allure в PATH
