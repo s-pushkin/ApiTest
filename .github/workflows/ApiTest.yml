@@ -38,6 +38,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: test_all
     steps:
+      - name: Set execute permissions on gradlew
+        run: chmod +x ./gradlew
+        
       - uses: actions/checkout@v3
       
       - name: Run tests
