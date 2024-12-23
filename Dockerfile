@@ -7,13 +7,13 @@ ENV ALLURE_VERSION=2.11.0
 RUN apt-get update && apt-get install -y wget unzip && rm -rf /var/lib/apt/lists/*
 
 # Скачиваем Allure
-RUN wget --no-verbose -O /tmp/allure-$ALLURE_VERSION.zip \
+RUN wget --no-verbose -O /tmp/allure-2.13.8.zip \
     https://github.com/allure-framework/allure2/releases/download/2.13.8/allure-2.13.8.zip \
     && unzip /tmp/allure-2.13.8.zip -d /opt/ \
     && rm -rf /tmp/*
 
 # Устанавливаем Allure в PATH
-ENV PATH="/opt/allure-${ALLURE_VERSION}/bin:${PATH}"
+ENV PATH="/opt/allure-${2.13.8}/bin:${PATH}"
 
 # Устанавливаем зависимости для работы с Java и Gradle
 RUN apt-get update && apt-get install -y \
