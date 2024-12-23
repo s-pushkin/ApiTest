@@ -129,7 +129,7 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Allure report
-        uses: afiore/action-allure-report@v2.11.0
+        uses: afiore/action-allure-report@v0.1.0
         with:
           results-dir: allure-results
        
