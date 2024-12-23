@@ -52,15 +52,21 @@ task testAll(type: Test) {
     dependsOn testRegisterUser, testUpdateUser, testDeleteUser, testGetUser  // Зависимости между задачами
 }
 
-task allureReports(type: Exec) {
+allure {
+    version = '2.11.0'
+    reportDir = file("build/allure-report")
+    resultsDir = file("build/allure-results")
+}
+
+
+task allureReports(type: io.qameta.allure.gradle.task.AllureReport) {
     description = 'Generates Allure report'
-    group = 'verification'
-    commandLine 'allure', 'generate', "$buildDir/allure-results", '--output', "$buildDir/allure-report"
+    
+    outputDir = file("build/allure-report")
 }
 
 // Задача для отображения отчета Allure
-task allureServes(type: Exec) {
+task allureServes(type: io.qameta.allure.gradle.task.AllureServe) {
     description = 'Serves Allure report'
-    group = 'verification'
-    commandLine 'allure', 'serve', "$buildDir/allure-results"
+    dependsOn allureReport
 }
