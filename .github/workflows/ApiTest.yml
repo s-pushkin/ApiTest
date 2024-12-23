@@ -38,6 +38,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: test_all
     steps:
+      - uses: actions/checkout@v3
+      
       - name: Run tests
         run: ./gradlew clean test
     
