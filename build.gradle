@@ -54,11 +54,13 @@ task testAll(type: Test) {
 
 task allureReports(type: Exec) {
     description = 'Generates Allure report'
+    group = 'verification'
     commandLine 'allure', 'generate', "$buildDir/allure-results", '--output', "$buildDir/allure-report"
 }
 
 // Задача для отображения отчета Allure
 task allureServes(type: Exec) {
     description = 'Serves Allure report'
+    group = 'verification'
     commandLine 'allure', 'serve', "$buildDir/allure-results"
 }
