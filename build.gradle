@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'io.qameta.allure' version '2.14.0'
 }
 
 group = 'org.example'
@@ -13,10 +14,12 @@ dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testImplementation 'io.rest-assured:rest-assured:5.0.0'
+    testImplementation 'io.qameta.allure:allure-junit5:2.13.9'
 }
 
 test {
     useJUnitPlatform()
+    finalizedBy 'allureReport'
 }
 
 // Задачи для каждого набора тестов с тегами
@@ -47,4 +50,15 @@ task testGetUser(type: Test) {
 // Основная задача, которая зависит от всех отдельных задач
 task testAll(type: Test) {
     dependsOn testRegisterUser, testUpdateUser, testDeleteUser, testGetUser  // Зависимости между задачами
+}
+
+task allureReport(type: Exec) {
+    description = 'Generates Allure report'
+    commandLine 'allure', 'generate', "$buildDir/allure-results", '--output', "$buildDir/allure-report"
+}
+
+// Задача для отображения отчета Allure
+task allureServe(type: Exec) {
+    description = 'Serves Allure report'
+    commandLine 'allure', 'serve', "$buildDir/allure-results"
 }
