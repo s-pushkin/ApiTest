@@ -128,11 +128,10 @@ jobs:
       - name: Set execute permissions on gradlew
         run: chmod +x ./gradlew
 
-      - name: Generate Allure report
-        run: ./gradlew allureReport
-
-      - name: Upload Allure Report as artifact
-        uses: actions/upload-artifact@v3
+      - name: Allure report
+        uses: afiore/action-allure-report@v2.11.0
         with:
-          name: allure-report
-          path: build/allure-report
+          results-dir: allure-results
+       
+          report-dir: allure-report
+      
