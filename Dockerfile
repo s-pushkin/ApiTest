@@ -1,4 +1,5 @@
-FROM openjdk:11-jre-slim
+FROM openjdk:11-jdk-slim
+
 
 # Устанавливаем переменную для версии Allure
 ENV ALLURE_VERSION=2.11.0
