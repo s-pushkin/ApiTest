@@ -1,4 +1,5 @@
 import org.junit.jupiter.api.Test;
+import io.qameta.allure.Allure;
 
 public class ApiTest {
     @Test
