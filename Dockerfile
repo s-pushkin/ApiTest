@@ -1,36 +1,39 @@
-# Используем официальный образ с JDK (например, OpenJDK 17)
-FROM openjdk:17-jdk-slim
+FROM openjdk:11-jre-slim
 
-# Устанавливаем рабочую директорию внутри контейнера
-WORKDIR /app
-
-# Копируем файлы проекта в контейнер
-COPY . /app
-
-# Устанавливаем wget и unzip для загрузки Allure
-RUN apt-get update && apt-get install -y wget unzip
-
-# Устанавливаем версию Allure (можно изменить на актуальную версию)
+# Устанавливаем переменную для версии Allure
 ENV ALLURE_VERSION=2.14.0
 
-# Скачиваем Allure командную строку и распаковываем
-RUN wget --no-verbose -O /tmp/allure-$ALLURE_VERSION.zip https://github.com/allure-framework/allure2/releases/download/$ALLURE_VERSION/allure-commandline-$ALLURE_VERSION.zip \
+# Устанавливаем curl для скачивания Allure
+RUN apt-get update && apt-get install -y wget unzip && rm -rf /var/lib/apt/lists/*
+
+# Скачиваем Allure
+RUN wget --no-verbose -O /tmp/allure-$ALLURE_VERSION.zip \
+    https://github.com/allure-framework/allure2/releases/download/$ALLURE_VERSION/allure-commandline-$ALLURE_VERSION.zip \
     && unzip /tmp/allure-$ALLURE_VERSION.zip -d /opt/ \
     && rm -rf /tmp/*
 
-# Добавляем Allure в PATH
-ENV PATH="/opt/allure-$ALLURE_VERSION/bin:$PATH"
+# Устанавливаем Allure в PATH
+ENV PATH="/opt/allure-${ALLURE_VERSION}/bin:${PATH}"
 
-# Устанавливаем Gradle (если еще не установлен)
-RUN apt-get install -y curl && curl -s https://get.sdkman.io | bash && \
-    source "$HOME/.sdkman/bin/sdkman-init.sh" && \
-    sdk install gradle
+# Устанавливаем зависимости для работы с Java и Gradle
+RUN apt-get update && apt-get install -y \
+    curl \
+    git \
+    ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
 
-# Запускаем сборку проекта с Gradle
-RUN ./gradlew build
+# Копируем исходный код и устанавливаем зависимости
+WORKDIR /app
+COPY . .
 
-# Открываем порт для отчета (если необходимо)
-EXPOSE 8080
+# Устанавливаем Gradle
+RUN wget https://services.gradle.org/distributions/gradle-7.3.3-bin.zip -P /tmp \
+    && unzip /tmp/gradle-7.3.3-bin.zip -d /opt \
+    && rm -f /tmp/gradle-7.3.3-bin.zip
 
-# Генерация отчета Allure после выполнения тестов
-CMD allure serve build/allure-results
+# Устанавливаем путь к Gradle
+ENV GRADLE_HOME=/opt/gradle-7.3.3
+ENV PATH=${GRADLE_HOME}/bin:${PATH}
+
+# По умолчанию запускаем Gradle с тестами
+CMD ["gradle", "test"]
