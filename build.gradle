@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id 'io.qameta.allure' version '2.14.0'  // Подключаем плагин Allure через plugins
+    id 'io.qameta.allure' version '2.11.0'  // Подключаем плагин Allure через plugins
 }
 
 group = 'org.example'
