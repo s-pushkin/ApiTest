@@ -17,7 +17,7 @@ jobs:
         uses: gradle/wrapper-validation-action@v1
 
   test_register_user:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     needs: build     
     steps:
       - name: Checkout
@@ -36,7 +36,7 @@ jobs:
         run: ./gradlew TestRegisterUser
         
   test_get_user:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     needs: build  # Зависит от успешного выполнения 'register-user-tests'
 
     steps:
@@ -55,7 +55,7 @@ jobs:
         run: ./gradlew TestGetUser
 
   test_update_user:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     needs: build
     steps:
       - name: Checkout
@@ -73,7 +73,7 @@ jobs:
         run: ./gradlew TestUpdateUser
 
   test_delete_user:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     needs: build
 
     steps:
@@ -93,7 +93,7 @@ jobs:
         run: ./gradlew TestDeleteUser
         
   api_test:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     needs: [test_register_user, test_get_user, test_delete_user, test_update_user]
     
     steps:
