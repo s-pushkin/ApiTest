@@ -1,14 +1,6 @@
-buildscript {
-    repositories {
-        mavenCentral()
-        gradlePluginPortal()  // Добавляем Gradle Plugin Portal для поиска плагинов
-    }
-    dependencies {
-        classpath 'io.qameta.allure:allure-gradle:2.14.0'  // Подключаем плагин через classpath
-    }
-}
 plugins {
     id 'java'
+    id 'io.qameta.allure' version '2.14.0'  // Подключаем плагин Allure через plugins
 }
 
 group = 'org.example'
@@ -28,9 +20,16 @@ dependencies {
 
 test {
     useJUnitPlatform()
-    finalizedBy 'allureReport'
+    finalizedBy 'allureReport'  // Запуск отчета Allure после тестов
 }
 
+allure {
+    version = '2.13.9'
+    reportDir = file("build/allure-report")
+    resultsDir = file("build/allure-results")
+}
+
+// Задачи для каждого набора тестов с тегами
 task testRegisterUser(type: Test) {
     useJUnitPlatform {
         includeTags 'registerUser'  // Указываем тег для тестов регистрации пользователя
@@ -55,12 +54,7 @@ task testGetUser(type: Test) {
     }
 }
 
+// Основная задача, которая зависит от всех отдельных задач
 task testAll(type: Test) {
     dependsOn testRegisterUser, testUpdateUser, testDeleteUser, testGetUser  // Зависимости между задачами
-}
-
-allure {
-    version = '2.13.9' 
-    reportDir = file("build/allure-report") 
-    resultsDir = file("build/allure-results") 
 }
