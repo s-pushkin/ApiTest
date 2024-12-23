@@ -12,7 +12,7 @@ public class ApiTest {
         testRegisterUser.negativeTestRegisterUserWithoutPassword("eve.holt@reqres.in");
 
         testGetUser.positiveTestGetUser(2);
-        testGetUser.negativeTestGetUserNotFound(2);
+        testGetUser.negativeTestGetUserNotFound(9999);
 
         testDeleteUser.positiveTestDeleteUser(2);
         testDeleteUser.negativeTestDeleteUserNotFound(9999);
