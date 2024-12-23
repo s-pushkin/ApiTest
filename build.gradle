@@ -1,6 +1,14 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        gradlePluginPortal()  // Добавляем Gradle Plugin Portal для поиска плагинов
+    }
+    dependencies {
+        classpath 'io.qameta.allure:allure-gradle:2.14.0'  // Подключаем плагин через classpath
+    }
+}
 plugins {
     id 'java'
-    id 'io.qameta.allure' version '2.14.0'
 }
 
 group = 'org.example'
