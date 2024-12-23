@@ -28,6 +28,8 @@ jobs:
         with:
           java-version: 22
           distribution: zulu
+      - name: Set execute permissions on gradlew
+        run: chmod +x ./gradlew
           
       - name: Run Register User tests
         run: ./gradlew TestRegisterUser
@@ -45,6 +47,8 @@ jobs:
         with:
           java-version: 22
           distribution: zulu
+      - name: Set execute permissions on gradlew
+        run: chmod +x ./gradlew
           
       - name: Run Get User tests
         run: ./gradlew TestGetUser
@@ -61,6 +65,8 @@ jobs:
         with:
           java-version: 22
           distribution: zulu
+      - name: Set execute permissions on gradlew
+        run: chmod +x ./gradlew
           
       - name: Run Update User tests
         run: ./gradlew TestUpdateUser
@@ -78,6 +84,9 @@ jobs:
         with:
           java-version: 22
           distribution: zulu
+
+      - name: Set execute permissions on gradlew
+        run: chmod +x ./gradlew
           
       - name: Run Delete User tests
         run: ./gradlew TestDeleteUser
