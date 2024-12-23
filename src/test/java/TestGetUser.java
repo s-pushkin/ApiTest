@@ -20,6 +20,6 @@ public class TestGetUser {
                 .get("https://reqres.in/api/users/" + id);
 
         assertEquals(404, response.getStatusCode(), "Expected status code 404");
-        assertEquals("{}", response.getBody().asString(), "Error message is incorrect");
+        assertEquals("{Error}", response.getBody().asString(), "Error message is incorrect");
     }
 }
