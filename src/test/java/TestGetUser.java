@@ -3,6 +3,7 @@ import io.restassured.response.Response;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Tag;
+import io.qameta.allure.Allure;
 
 @Tag("getUser")
 public class TestGetUser {
