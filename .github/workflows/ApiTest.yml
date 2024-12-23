@@ -110,7 +110,7 @@ jobs:
           allure_results: build/allure-results
 
       - name: Publish test report
-        uses: peaceiris/actions-main@v3
+        uses: ApiTest/ApiTest-actions@main
         if: always()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
