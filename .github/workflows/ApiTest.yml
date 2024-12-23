@@ -46,7 +46,7 @@ jobs:
         
   test_get_user:
     runs-on: ubuntu-latest
-    needs: build  # Зависит от успешного выполнения 'register-user-tests'
+    needs: build 
 
     steps:
       - name: Checkout
