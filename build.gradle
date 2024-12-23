@@ -25,8 +25,9 @@ test {
 
 allure {
     version = '2.13.9'
-    reportDir = file("build/allure-report")
-    resultsDir = file("build/allure-results")
+    resultsDir = file("$buildDir/allure-results")
+    reportDir = file("$buildDir/allure-report")
+
 }
 
 // Задачи для каждого набора тестов с тегами
