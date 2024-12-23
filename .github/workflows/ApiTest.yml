@@ -20,6 +20,15 @@ jobs:
     runs-on: ubuntu-latest
     needs: build     
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4.2.2
+
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4.6.0
+        with:
+          java-version: 22
+          distribution: zulu
+          
       - name: Run Register User tests
         run: ./gradlew TestRegisterUser
         
@@ -28,6 +37,15 @@ jobs:
     needs: build  # Зависит от успешного выполнения 'register-user-tests'
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4.2.2
+
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4.6.0
+        with:
+          java-version: 22
+          distribution: zulu
+          
       - name: Run Get User tests
         run: ./gradlew TestGetUser
 
@@ -35,6 +53,15 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4.2.2
+
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4.6.0
+        with:
+          java-version: 22
+          distribution: zulu
+          
       - name: Run Update User tests
         run: ./gradlew TestUpdateUser
 
@@ -43,6 +70,15 @@ jobs:
     needs: build
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4.2.2
+
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4.6.0
+        with:
+          java-version: 22
+          distribution: zulu
+          
       - name: Run Delete User tests
         run: ./gradlew TestDeleteUser
       
