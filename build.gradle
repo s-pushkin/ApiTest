@@ -51,7 +51,7 @@ task testAll(type: Test) {
 }
 
 allure {
-    version = '2.13.9' 
+    version = '2.9.6' 
     reportDir = file("build/allure-report") 
     resultsDir = file("build/allure-results") 
 }
