@@ -13,7 +13,7 @@ RUN wget --no-verbose -O /tmp/allure-2.13.8.zip \
     && rm -rf /tmp/*
 
 # Устанавливаем Allure в PATH
-ENV PATH="/opt/allure-${2.13.8}/bin:${PATH}"
+ENV PATH="/opt/allure-2.13.8/bin:${PATH}"
 
 # Устанавливаем зависимости для работы с Java и Gradle
 RUN apt-get update && apt-get install -y \
