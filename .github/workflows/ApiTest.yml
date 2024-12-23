@@ -54,7 +54,7 @@ jobs:
       - name: Run Get User tests
         run: ./gradlew TestGetUser
 
-  test_delete_user:
+  test_update_user:
     runs-on: ubuntu-latest
     needs: build
     steps:
