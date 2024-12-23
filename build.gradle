@@ -26,7 +26,7 @@ test {
 }
 
 allure {
-    version = '2.14.0'  // Версия Allure
+    version = '2.11.0'  // Версия Allure
     reportDir = file("build/allure-report")  // Папка для отчетов
     resultsDir = file("build/allure-results")  // Папка для результатов тестов
 }
