@@ -1,7 +1,7 @@
 FROM openjdk:11-jre-slim
 
 # Устанавливаем переменную для версии Allure
-ENV ALLURE_VERSION=2.14.0
+ENV ALLURE_VERSION=2.11.0
 
 # Устанавливаем curl для скачивания Allure
 RUN apt-get update && apt-get install -y wget unzip && rm -rf /var/lib/apt/lists/*
